@@ -1,8 +1,17 @@
-OWASP : https://www.owasp.org/index.php/OWASP_API_Security_Project
-
+OWASP : 
+https://www.owasp.org/index.php/OWASP_API_Security_Project
 https://www.owasp.org/index.php/OWASP_SaaS_Rest_API_Secure_Guide
 
 https://blog.securelayer7.net/web-services-api-penetration-testing-part-1/
 https://blog.securelayer7.net/web-services-api-penetration-testing-part-2/
 https://www.mindpointgroup.com/blog/pen-test/rest-assured-penetration-testing-rest-apis-using-burp-suite-part-1-introduction-configuration/
 
+
+Some exploitation & POCs :
+http://infotraks.blogspot.com/2014/05/json-hijacking_7.html
+https://blog.netspi.com/playing-content-type-xxe-json-endpoints/
+https://www.websecgeeks.com/2015/10/attacking-json-application-pentesting.html
+
+
+Post-man Config :
+https://blog.secureideas.com/2019/03/better-api-penetration-testing-with-postman-part-1.html
