@@ -2,9 +2,17 @@ OWASP :
 https://www.owasp.org/index.php/OWASP_API_Security_Project
 https://www.owasp.org/index.php/OWASP_SaaS_Rest_API_Secure_Guide
 
+
+Guide :
 https://blog.securelayer7.net/web-services-api-penetration-testing-part-1/
 https://blog.securelayer7.net/web-services-api-penetration-testing-part-2/
 https://www.mindpointgroup.com/blog/pen-test/rest-assured-penetration-testing-rest-apis-using-burp-suite-part-1-introduction-configuration/
+https://www.testbytes.net/blog/api-security-testing-rules-and-checklist/
+https://nordicapis.com/9-types-of-tests-to-perform-on-your-apis/
+
+
+API Refrence :
+https://pentest-tools.com/api_reference
 
 
 Some exploitation & POCs :
@@ -15,6 +23,7 @@ https://www.websecgeeks.com/2015/10/attacking-json-application-pentesting.html
 
 Post-man Config :
 https://blog.secureideas.com/2019/03/better-api-penetration-testing-with-postman-part-1.html
+
 
 Diffrence between Tokens :
 https://auth0.com/docs/api-auth/why-use-access-tokens-to-secure-apis#identity-tokens
