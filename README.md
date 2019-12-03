@@ -7,7 +7,7 @@ This Repo is to Learn API testing and Tools/Reports Related to it
 4. A Web Service needs a network while an API doesn't need a network for its operation.
 
 Types of API :
-SOAP — Simple Object Access Protocol - Protocol
+SOAP — Simple Object Access Protocol - Protocol,
 REST — Representational State Transfer – Architecture
 
 Method	Meaning :
@@ -18,4 +18,4 @@ DELETE	Removes a resource
 HEAD	Fetches metadata associated with a resource's state
 OPTIONS	Lists the available methods
 
-Please read the Documets
+Please read the Docs
