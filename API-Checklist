@@ -1,0 +1,67 @@
+API check List
+
+Basic
+•	Don't use Basic Auth Use standard authentication (e.g. JWT, OAuth).
+•	Identify if the API has any authorization token if it is having then remove that authorization token and see application response. In some cases, if authorization is not implemented correctly then API might give you access to forbidden assets of application.
+•	Don't reinvent the wheel in Authentication, token generating, password storing use the standards.
+•	JWT (JSON Web Token): Use random complicated key (JWT Secret) to make brute forcing token very hard. Don't extract the algorithm from the payload. Force algorithm in the backend (HS256 or RS256).
+•	Make token expiration (TTL, RTTL) as short as possible. Don’t store sensitive data in the JWT payload, it can be decoded easily.
+•	OAuth: Always validate redirect_uri on server side to allow only whitelisted URLs.
+•	Always try to exchange for code not tokens (don't allow response_type=token).
+•	Use state parameter with a random hash to prevent CSRF on OAuth authentication process.
+•	Define default scope and validate scope parameter for each application.
+
+Access
+•	Limit requests (Throttling) to avoid DDoS / brute-force attacks.
+•	Use HTTPS on server side to avoid MITM (Man in the Middle Attack).
+•	Use HSTS header with SSL to avoid SSL Strip attack.
+•	Analyze and check each module with a different access level of user ex: admin, moderator, normal user.
+•	Check whether admin modules can be accessed via the restricted user.
+
+Input Validation
+•	An API should provide expected output for a given input
+•	The inputs should appear within a range and values crossing the range must be rejected
+•	Any empty or null input must be rejected when it is unacceptable
+•	Incorrectly sized input must be rejected
+•	Check injection vulnerabilities by inserting special characters in all parameters in a request and check the response from the server. If you find any stack traces, then use the information for further exploitation.
+•	Insert greater than, less than (<,>) characters in all parameters and see response whether the application encoding them as > and <. If an application doesn’t escape any special characters then the application may be vulnerable to client-side attacks such as XSS (cross-site scripting).
+
+Parameter Tampering
+•	It takes the advantage of backend sanitizing errors and then manipulates parameters sent in API requests.
+•	According to this, the forms that use type=”hidden” input should always be tested in order to make sure that backend server correctly validates them.
+<input type=”hidden” name=”price” value=”100.00″ />
+Conceptually, when the user opens his web browser and changes the input valued from 100.00 to 1.00 and submit the form, then the service will be vulnerable to parameter tampering.
+•	Observe each parameter in every module of API, understand how the data is transferred from source to destination. Try to play with the parameter by tampering them.
+•	Identify the parameters which may vulnerable to IDOR type vulnerabilities such as id=1234 and also look at the cookies for manipulating the Ids.
+•	Modify the content-type server header for understanding the XML entity injection attack. Example: change content Application/JSON to application/XML and insert the XML entity payload to find the XML entity injection.
+
+Processing
+•	Check if all the endpoints are protected behind authentication to avoid broken authentication process.
+•	User own resource ID should be avoided. Use /me/orders instead of /user/654321/orders.
+•	Don't auto-increment IDs. Use UUID instead.
+•	If you are parsing XML files, make sure entity parsing is not enabled to avoid XXE (XML external entity attack).
+•	If you are parsing XML files, make sure entity expansion is not enabled to avoid Billion Laughs/XML bomb via exponential entity expansion attack.
+•	Use a CDN for file uploads.
+•	If you are dealing with huge amount of data, use Workers and Queues to process as much as possible in background and return response fast to avoid HTTP Blocking.
+•	Do not forget to turn the DEBUG mode OFF.
+
+Output
+•	Send X-Content-Type-Options: nosniff header.
+•	Send X-Frame-Options: deny header.
+•	Send Content-Security-Policy: default-src 'none' header.
+•	Remove fingerprinting headers - X-Powered-By, Server, X-AspNet-Version, etc.
+•	Force content-type for your response. If you return application/json, then your content-type response is application/json.
+•	Don't return sensitive data like credentials, Passwords, or security tokens.
+•	Return the proper status code according to the operation completed. (e.g. 200 OK, 400 Bad Request, 401 Unauthorized, 405 Method Not Allowed, etc.)
+
+Rate Limiting
+•	Especially important if your API is public-facing so your API and back-end are not easily DOSed. Simple rate limits are available in many web servers and proxies, though more sophisticated entity intensity tracking is even better. 
+Rate limiting prevents malicious code from abusing legitimate or illegitimate access to the API.
+HTTP/1.1 429 Too Many Requests
+Content-Type: text/html
+Retry-After: 3600
+
+Geofencing
+•	If your API is public, it might make sense to either block users from countries you don't do business with, or at least raise the risk score of entities that come from those countries
+
+Thanks @Saumya Kasthuri
